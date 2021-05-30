@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% extends "bootstrap/base.html" %}
+<html lang="en">
+<head>
+    {% block head %}
+   <meta name="viewport" content="width=device-width,initial-scale=1">  
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">  
+    <meta charset="UTF-8">
+    <title>Değişik bir blog</title>
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    
+    {% endblock %}
+</head>
+
+    <body>
+        {% block content %}
+        
+        
+        <header>
+            
+            <div class="bg-im"></div>
+            <div class="content">
+                <h1>Blogumsu siteme hoşgeldiniz</h1>
+                <p>Canımın istediklerinden bahsettiğim öylesine basit bir site</p>
+                <a href="{{url_for('posted')}}" class="btn">Yazılar</a>
+            </div>
+            
+        </header>
+        <main>
+            <section id="section-a">
+                <div class="content">
+                    <h2>Ben kimim</h2>
+                    <p>Sıradan, 20 yaşında, fazlasıyla daralmış, sıkılmış, bunalmış yeni bir şeyler denemek isteyen bir üniversite öğrencisiyim.</p>
+                </div>
+            </section>
+            
+            <section id="section-b">
+                <h2>Son yazılar</h2>
+                <ul>
+                    {% for post in posts %}
+                    <li>
+                        <div class="col">
+                            <img src="{{ post[7] }}" alt="">
+                            <div class="col-content">
+                                <a href="{{url_for('post', url = post['post_url'])}}"><h3 class="col-title">
+                                    {{ post["post_title"] }}
+                                </h3></a>
+                                <p>{{ post["post_preview"] }}</p>
+                                <p>{{ post["post_date"] }}</p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+            
+            <section id="section-c">
+                <div class="content">
+                    <h2>Bu sitenin kullanımı için önerilenler</h2>
+                    <p>Bağnaz, gerici, insanların fikirlerne saygı duymayan küçük bir insansanız direkt olarak bu siteyi terk etmenizi ve bir daha girmemenizi şiddetle öneririm.</p>
+                    <p>
+                        Burada yazanların tamamen samimi ve basit duygularla can sıkıntısı sebebiyle herhangi bir beklentiye girilmeden yazıldığını ve okusanız da okumasanız da benim için bir şey değişmeyeceğini, herhangi bir bilimsel ya da toplumsal kaygı içermeden öznel düşüncelerim ve fikirlerimden oluşan yazılan yazılar olduğunu aklınızdan çıkarmayınız.
+                    </p>
+                </div>
+            </section>
+            
+            <section id="section-d" class='clearfix'>
+                <div class="box">
+                    <h2 class="content-title">İletişim</h2>
+                    <p>İrtibata geçmek için</p>
+                    <p>E-mail: dorukaras30@gmail.com</p>
+                    <p>Instagram: @doruk_ars</p>
+                </div>
+                <div class="box">
+                    <h2 class="content-title">Site Hakkında</h2>
+                    <p>Bu site tamamen şahsım tarafından yazılmıştır tüm hakları bana aittir. Gerekli ise iletişim bilgilerim sitede yer almaktadır. İyi günler.</p>
+                </div>            
+            </section>
+        </main>
+        <footer>
+
+            <p class = "py-5 bg-dark text-white text-center"> Copyright @ Doruk Aras 2021 </p>
+
+        </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    {% endblock %}  
+    </body>
+    
+</html>
